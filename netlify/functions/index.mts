@@ -3,7 +3,8 @@ import { Config, Context } from "@netlify/functions";
 const API_ENDPOINT = 'https://europe-west3-wormhole-message-db-mainnet.cloudfunctions.net/missing-vaas';
 
 export default async (req: Request, context: Context) => {
-  if (req.headers['accept' as any] !== 'application/json') {
+  console.log(req.headers)
+  if (req.headers.get('accept') !== 'application/json') {
     return Response.redirect('https://wormhole-foundation.github.io/wormhole-dashboard/');
   } else {
     const { id } = context.params;
