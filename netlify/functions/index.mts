@@ -25,7 +25,7 @@ export default async (req: Request, context: Context) => {
       const data = await response.json();
       const { messages = [] }: { messages: any[] } = data[id] || {};
       const now = Date.now();
-      const warn = messages.filter((m: any) => (now - new Date(m.timestamp).getTime()) < 3600000);
+      const warn = messages.filter((m: any) => (now - new Date(m.timestamp).getTime()) > 3600000);
       if (warn && warn.length > 0) {
         console.log(warn);
         return Response.json({ status: 'warning', warn }, { headers: { 'cache-control': 'max-age=1' } });
