@@ -1,0 +1,6 @@
+{
+  "name":"vaa-status-check",
+  "dependencies": {
+    "@netlify/functions": "^2.4.1"
+  }
+}
