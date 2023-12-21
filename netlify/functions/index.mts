@@ -45,13 +45,13 @@ export default async (req: Request, context: Context) => {
       const warn = messages.filter((m: any) => (now - new Date(m.timestamp).getTime()) < 3600000);
       if (warn) {
         console.log(warn);
-        return Response.json({ status: 'warning', warn });
+        return Response.json({ status: 'warning', warn }, { headers: { 'cache-control': 'max-age=1' } });
       } else {
-        return Response.json({ status: 'ok' });
+        return Response.json({ status: 'ok' }, { headers: { 'cache-control': 'max-age=1' } });
       }
     } catch (error) {
       console.log(error);
-      return Response.json({ error: 'Failed fetching data' }, { status: 500 });
+      return Response.json({ error: 'Failed fetching data' }, { status: 500,  headers: { 'cache-control': 'max-age=1' }  });
     }
   }
 };
